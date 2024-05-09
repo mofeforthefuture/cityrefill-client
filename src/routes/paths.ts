@@ -1,6 +1,7 @@
 const Paths = {
-  LOGIN: '/login',
-  REGISTER: '/register',
+  LOGIN: '/auth/login',
+  REGISTER: '/auth/register',
+  AUTH: '/auth',
 };
 
 export default Paths;

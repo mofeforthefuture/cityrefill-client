@@ -1,16 +1,13 @@
 import Paths from './paths';
 import { RouteObject } from 'react-router-dom';
-import Login from '@/pages/authentication/login';
-import { lazy } from 'react';
-
+import AuthLayout from '@/components/layouts/auth-layout';
+import authRoutes from './auth-routes';
 interface Paths {
-  LOGIN: string;
-  REGISTER: string;
+  AUTH: string;
 }
-const Register = lazy(() => import('@/pages/authentication/register'));
+
 const routes: RouteObject[] = [
-  { path: Paths.LOGIN, element: <Login /> },
-  { path: Paths.REGISTER, element: <Register /> },
+  { path: Paths.AUTH, element: <AuthLayout />, children: authRoutes },
 ];
 
 export default routes;
