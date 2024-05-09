@@ -28,9 +28,9 @@ export default function LoginForm() {
     console.log(values);
   }
   return (
-    <Card className='w-[400px]'>
+    <Card className='w-[400px] min-h-[380px]'>
       <CardHeader>
-        <CardTitle>Login</CardTitle>
+        <CardTitle className='text-2xl'>Login</CardTitle>
         <CardDescription>Welcome back!!</CardDescription>
       </CardHeader>
       <CardContent>
@@ -51,7 +51,9 @@ export default function LoginForm() {
               type='password'
             />
 
-            <Button type='submit'>Submit</Button>
+            <Button className='w-full ' type='submit'>
+              Submit
+            </Button>
           </form>
         </Form>
       </CardContent>
