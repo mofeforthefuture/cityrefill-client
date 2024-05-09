@@ -3,7 +3,7 @@ import axios from 'axios';
 type requestProp = {
   route: string;
   method: 'get' | 'options' | 'post' | 'put' | 'patch' | 'delete';
-  payload: object;
+  payload: Object;
 };
 const request = async ({ route, method, payload }: requestProp) => {
   method = method || 'get';

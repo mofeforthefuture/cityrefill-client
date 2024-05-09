@@ -1,4 +1,4 @@
-import { loginSchema } from '@/helpers/schema';
+import { userSchema } from '@/helpers/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -13,49 +13,58 @@ import {
   CardHeader,
   CardTitle,
 } from './ui/card';
-import { loginAction } from '@/actions/auth.action';
-import { useState } from 'react';
 
-export default function LoginForm() {
-  const [responseErr, setResponseErr] = useState<string | null>(null);
-  const form = useForm<z.infer<typeof loginSchema>>({
-    resolver: zodResolver(loginSchema),
+export default function RegisterForm() {
+  const form = useForm<z.infer<typeof userSchema>>({
+    resolver: zodResolver(userSchema),
     defaultValues: {
+      first_name: '',
+      last_name: '',
       email: '',
       password: '',
+      phone_number: '',
     },
   });
-  async function onSubmit(values: z.infer<typeof loginSchema>) {
+  function onSubmit(values: z.infer<typeof userSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    const response = await loginAction(values);
-    console.log(response.data);
-    if (response.data.error) {
-      setResponseErr(response.data.error);
-    } else {
-      console.log(response);
-    }
+    console.log(values);
   }
   return (
     <Card className='w-[400px] min-h-[380px]'>
       <CardHeader>
-        <CardTitle className='text-2xl'>Login</CardTitle>
-        <CardDescription>Welcome back!!</CardDescription>
-        {responseErr && (
-          <CardDescription className='text-red-600'>
-            {responseErr}
-          </CardDescription>
-        )}
+        <CardTitle className='text-2xl'>Register</CardTitle>
+        <CardDescription>Hi there, Can't wait to have you!!</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
             <FormInput
               control={form.control}
+              name='first_name'
+              label='Firstname'
+              placeholder='Eyimofe'
+              autoComplete='given-name'
+            />
+            <FormInput
+              control={form.control}
+              name='last_name'
+              label='Lastname'
+              placeholder='Omotayo'
+              autoComplete='family-name'
+            />
+            <FormInput
+              control={form.control}
               name='email'
               label='Email'
               placeholder='mofe@org.com'
               autoComplete='email'
+            />
+            <FormInput
+              control={form.control}
+              name='phone_number'
+              label='Phone Number'
+              placeholder='081xxxxxxxx'
             />
             <FormInput
               control={form.control}
