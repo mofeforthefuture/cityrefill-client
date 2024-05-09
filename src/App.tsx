@@ -2,6 +2,7 @@ import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './components/layout';
 import routes from './routes';
+import { Toaster } from 'sonner';
 
 function App() {
   const router = createBrowserRouter([
@@ -12,7 +13,11 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} /> <Toaster />
+    </>
+  );
 }
 
 export default App;

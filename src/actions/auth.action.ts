@@ -13,3 +13,16 @@ export const loginAction = async (payload: authPayloadType) => {
     return error.response;
   }
 };
+
+export const registerAction = async (payload: authPayloadType) => {
+  try {
+    const response = await request({
+      route: 'api/v1/auth/register',
+      method: 'post',
+      payload,
+    });
+    return response;
+  } catch (error: any) {
+    return error.response;
+  }
+};

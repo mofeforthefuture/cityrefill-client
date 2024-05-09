@@ -1,4 +1,4 @@
-import { userSchema } from '@/helpers/schema';
+import { loginSchema } from '@/helpers/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -13,46 +13,51 @@ import {
   CardHeader,
   CardTitle,
 } from './ui/card';
+import { registerAction } from '@/actions/auth.action';
+import { useState } from 'react';
+import { toast } from 'sonner';
+import { useNavigate } from 'react-router-dom';
 
 export default function RegisterForm() {
-  const form = useForm<z.infer<typeof userSchema>>({
-    resolver: zodResolver(userSchema),
+  const navigate = useNavigate();
+  const [responseErr, setResponseErr] = useState<string | null>(null);
+  const form = useForm<z.infer<typeof loginSchema>>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
-      first_name: '',
-      last_name: '',
       email: '',
       password: '',
-      phone_number: '',
     },
   });
-  function onSubmit(values: z.infer<typeof userSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof loginSchema>) {
+    const response = await registerAction(values);
+    console.log(response);
+    if (response?.data.error) {
+      setResponseErr(response.data.error);
+    } else {
+      console.log(response);
+      toast(response.data.message, {
+        description: 'Well done!! you can now login.',
+        action: {
+          label: 'Login',
+          onClick: () => navigate('/auth/login'),
+        },
+      });
+    }
   }
   return (
     <Card className='w-[400px] min-h-[380px]'>
       <CardHeader>
         <CardTitle className='text-2xl'>Register</CardTitle>
         <CardDescription>Hi there, Can't wait to have you!!</CardDescription>
+        {responseErr && (
+          <CardDescription className='text-red-600'>
+            {responseErr}
+          </CardDescription>
+        )}
       </CardHeader>
       <CardContent>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
-            <FormInput
-              control={form.control}
-              name='first_name'
-              label='Firstname'
-              placeholder='Eyimofe'
-              autoComplete='given-name'
-            />
-            <FormInput
-              control={form.control}
-              name='last_name'
-              label='Lastname'
-              placeholder='Omotayo'
-              autoComplete='family-name'
-            />
             <FormInput
               control={form.control}
               name='email'
@@ -60,12 +65,7 @@ export default function RegisterForm() {
               placeholder='mofe@org.com'
               autoComplete='email'
             />
-            <FormInput
-              control={form.control}
-              name='phone_number'
-              label='Phone Number'
-              placeholder='081xxxxxxxx'
-            />
+
             <FormInput
               control={form.control}
               name='password'

@@ -29,7 +29,6 @@ export default function LoginForm() {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     const response = await loginAction(values);
-    console.log(response.data);
     if (response.data.error) {
       setResponseErr(response.data.error);
     } else {
