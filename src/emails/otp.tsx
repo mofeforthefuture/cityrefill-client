@@ -39,7 +39,11 @@ export default function CityrefillVerifyEmail({
           <Container style={container}>
             <Section style={coverSection}>
               <Section style={imageSection}>
-                <img src='https://imgbox.com/Mc3Vxy3B' alt='Logo' />
+                <img
+                  src='https://thumbs2.imgbox.com/aa/bd/Mc3Vxy3B_t.png'
+                  alt='Logo'
+                  className='w-30'
+                />
               </Section>
               <Section style={upperSection}>
                 <Heading style={h1}>Verify your email address</Heading>
@@ -142,7 +146,7 @@ const logoText = {
   margin: '10px 0',
 };
 const imageSection = {
-  backgroundColor: '#3533cd',
+  backgroundColor: '#004AAD',
   display: 'flex',
   padding: '20px 0',
   alignItems: 'center',
