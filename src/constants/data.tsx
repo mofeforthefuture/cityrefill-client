@@ -1,4 +1,4 @@
-import { Home, Cog } from 'lucide-react';
+import { Home, Cog, Truck, ShoppingCart, List, ListTodo } from 'lucide-react';
 
 export const sideBarArr = [
   {
@@ -7,6 +7,33 @@ export const sideBarArr = [
     ),
     text: 'Dashboard',
     to: '/',
+  },
+  {
+    icon: (active: boolean) => (
+      <ListTodo
+        color={active ? 'rgb(30 58 138)' : 'white'}
+        strokeWidth={1.25}
+      />
+    ),
+    text: 'Inventory',
+    to: '/inventory',
+  },
+  {
+    icon: (active: boolean) => (
+      <ShoppingCart
+        color={active ? 'rgb(30 58 138)' : 'white'}
+        strokeWidth={1.25}
+      />
+    ),
+    text: 'Shop',
+    to: '/shop',
+  },
+  {
+    icon: (active: boolean) => (
+      <Truck color={active ? 'rgb(30 58 138)' : 'white'} strokeWidth={1.25} />
+    ),
+    text: 'Deliveries',
+    to: '/deliveries',
   },
   {
     icon: (active: boolean) => (

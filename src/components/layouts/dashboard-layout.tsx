@@ -1,24 +1,20 @@
 import { sideBarArr } from '@/constants/data';
 import { Suspense } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
+import OrganisationSwitcher from '../dashboard/organisation-switcher';
 
 export default function DashboardLayout() {
   return (
     <div className='bg-slate-50 flex h-screen w-screen flex-row'>
-      <div className='h-screen w-1/5 bg-blue-900 py-5 '>
+      <div className='h-screen w-1/5 bg-blue-900 py-5 flex flex-col items-center '>
+        <OrganisationSwitcher />
         {sideBarArr.map((dashItem) => (
-          <NavLink
-            key={dashItem.text}
-            to={dashItem.to}
-            className={({ isActive, isPending }) =>
-              isActive ? 'active' : isPending ? 'pending' : ''
-            }
-          >
-            {({ isActive, isPending, isTransitioning }) => (
+          <NavLink key={dashItem.text} to={dashItem.to} className={'w-full'}>
+            {({ isActive, isPending }) => (
               <div
                 className={
                   isActive
-                    ? 'flex-row flex h-16 items-center px-2 bg-slate-100 border-r-8'
+                    ? 'flex-row flex h-16 items-center px-2 bg-slate-100 border-r-8 '
                     : isPending
                     ? 'pending flex-row flex h-16 items-center'
                     : 'inactive flex-row flex h-16 items-center px-2'
