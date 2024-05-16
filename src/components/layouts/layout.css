@@ -1,0 +1,13 @@
+.active {
+  height: 60px;
+  background-color: white;
+  border-radius: 6px;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+}
+
+.sidebar li a:hover {
+  background: #fff;
+}
