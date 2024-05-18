@@ -4,6 +4,7 @@ import AuthLayout from '@/components/layouts/auth-layout';
 import authRoutes from './auth-routes';
 import DashboardLayout from '@/components/layouts/dashboard-layout';
 import DashboardPage from '@/pages/dashboard';
+import ProtectedRoute from './protected-route';
 interface Paths {
   AUTH: string;
 }
@@ -13,7 +14,16 @@ const routes: RouteObject[] = [
   {
     path: Paths.HOME,
     element: <DashboardLayout />,
-    children: [{ index: true, element: <DashboardPage /> }],
+    children: [
+      {
+        index: true,
+        element: (
+          <ProtectedRoute>
+            <DashboardPage />
+          </ProtectedRoute>
+        ),
+      },
+    ],
   },
 ];
 

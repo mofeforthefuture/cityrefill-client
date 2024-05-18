@@ -1,4 +1,11 @@
-import { Home, Cog, Truck, ShoppingCart, List, ListTodo } from 'lucide-react';
+import {
+  Home,
+  Cog,
+  Truck,
+  ShoppingCart,
+  ListTodo,
+  ListOrdered,
+} from 'lucide-react';
 
 export const sideBarArr = [
   {
@@ -17,6 +24,16 @@ export const sideBarArr = [
     ),
     text: 'Inventory',
     to: '/inventory',
+  },
+  {
+    icon: (active: boolean) => (
+      <ListOrdered
+        color={active ? 'rgb(30 58 138)' : 'white'}
+        strokeWidth={1.25}
+      />
+    ),
+    text: 'Orders',
+    to: '/orders',
   },
   {
     icon: (active: boolean) => (
